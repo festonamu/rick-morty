@@ -1,1 +1,1 @@
-# rick-morty
+# rick-morty-react
