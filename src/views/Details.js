@@ -13,9 +13,9 @@ const Details = ({ type }) => {
   };
   function ordinalSuffix(number) {
     if (number === 0) return '0';
-    const suffixes = ['th', 'st', 'nd', 'rd'];
-    const v = number % 100;
-    return number + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
+      const suffixes = ['th', 'st', 'nd', 'rd'];
+      const v = number % 100;
+      return number + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
   }
 
   return (

@@ -1,7 +1,6 @@
 .filters {
   display: flex;
   flex-direction: row;
-  gap: 0 20px;
   height: 40px;
 
   &__toggle {
@@ -54,14 +53,12 @@
   &__options {
     display: flex;
     flex-direction: row;
-    gap: 0 20px;
 
     &__bar {
       display: flex;
       align-items: center;
       background-color: var(--theme-color);
       padding: 2px 0;
-      width: 300px;
       border-radius: 50px;
       position: relative;
       transition: width 300ms;
@@ -112,6 +109,42 @@
           svg:nth-of-type(2) {
             width: 0;
           }
+        }
+      }
+    }
+  }
+}
+
+// mobile
+@media(max-width: 480px) {
+  .filters {
+    gap: 0 4px;
+
+    &__options {
+      gap: 0 4px;
+
+      &__bar {
+        width: 160px;
+        input {
+          margin: 6px 0px 6px 34px;
+        }
+      }
+    }
+  }
+}
+
+// desktop & tablet
+@media(min-width: 480px) {
+  .filters {
+    gap: 0 20px;
+
+    &__options {
+      gap: 0 20px;
+
+      &__bar {
+        width: 300px;
+        input {
+          margin: 6px 0px 6px 40px;
         }
       }
     }

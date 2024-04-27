@@ -2,6 +2,7 @@
 
 @import 'variables';
 @import 'mixins';
+@import 'colors';
 @import 'common';
 
 @import 'pagination';
@@ -40,6 +41,19 @@ html, body, #root {
   
     h2 {
       text-transform: capitalize;
+    }
+  }
+
+  @media(max-width: 480px) {
+    .content {
+      margin-top: 44px;
+      padding: 8px 2px 60px;
+
+      .ps {
+        padding-left: 6px;
+        flex-direction: column;
+        gap: 6px;
+      }
     }
   }
 }

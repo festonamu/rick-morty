@@ -202,15 +202,22 @@
     }
   }
 
-  @media screen and (max-width: 768px) {
+}
+
+// tablet
+@media(max-width: 768px) {
+  .home {
     &_container__slider {
       &__content {
         padding: 6px 0 10px;
       }
     }
   }
+}
 
-  @media screen and (max-width: 480px) {
+// mobile
+@media(max-width: 480px) {
+  .home {
     &__container__slider {
       max-height: 340px;
       &__content {
