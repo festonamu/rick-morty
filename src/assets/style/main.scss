@@ -1,0 +1,17 @@
+@import 'home';
+
+* {
+  margin: 0;
+  font-family: "Quicksand";
+  color: #333;
+  cursor: default;
+  html, body, #root, .app {
+    height: 100%;
+    .App {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+      background-color: #e2e2e2;
+    }
+  }
+}
