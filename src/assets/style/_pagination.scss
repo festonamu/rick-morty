@@ -1,0 +1,31 @@
+.pagination {
+  text-align: end;
+
+  span {
+    display: inline-flex;
+    padding: 8px 16px;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--hover-color);
+      box-shadow: 1px 3px 5px var(--opacity-black-two);
+      cursor: pointer;
+    }
+
+    &.active {
+      background-color: var(--theme-color);
+      border-radius: 6px;
+      color: var(--white-color);
+    }
+
+    &.disabled {
+      pointer-events: none;
+      color: var(--disabled-color);
+    }
+
+    &:hover:not(.active) {
+      background-color: var(--passive-color);
+      border-radius: 6px;
+    }
+  }
+}

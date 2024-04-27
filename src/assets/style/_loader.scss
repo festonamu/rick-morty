@@ -1,0 +1,30 @@
+.loader {
+  width: 100%;
+  height: 100%;
+  margin-top: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &__spinner {
+    border: 6px solid var(--disabled-color);
+    border-radius: 50%;
+    border-top: 6px solid var(--theme-color);
+    width: 60px;
+    height: 60px;
+    animation: spin 2s linear infinite;
+  }
+
+  &__nodata {
+    font-size: 1.5rem;
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+
+  @media (min-width: 500px) {
+    margin-top: 10%;
+  }
+}

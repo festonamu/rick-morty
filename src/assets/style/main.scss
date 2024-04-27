@@ -1,17 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+
+@import 'variables';
+@import 'mixins';
+@import 'common';
+
+@import 'pagination';
+@import 'filters';
+@import 'navbar';
+@import 'loader';
+
 @import 'home';
+@import 'cards';
+@import 'details';
 
 * {
   margin: 0;
   font-family: "Quicksand";
-  color: #333;
+  color: var(--text-primary);
   cursor: default;
-  html, body, #root, .app {
-    height: 100%;
-    .App {
-      display: flex;
-      justify-content: space-between;
-      flex-direction: column;
-      background-color: #e2e2e2;
-    }
+  overflow-x: hidden !important;
+  overflow: hidden;
+}
+
+html, body, #root, .app {
+  height: 100%;
+}
+
+.app {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+  background-color: var(--white-color);
+}
+
+.content {
+  padding: 8px 20px;
+  margin-top: 54px;
+  min-height: 80vh;
+  overflow: hidden auto;
+  // height: 82vh;
+
+  h2 {
+    text-transform: capitalize;
+  }
+}
+
+.loader {
+  margin: 50px 0;
+}
+
+.footer {
+  background-color: var(--head-footer-color);
+  padding: 12px 0 28px;
+  width: 100%;
+  text-align: center;
+  font-size: .8rem;
+
+  a {
+    @include linkHover();
   }
 }

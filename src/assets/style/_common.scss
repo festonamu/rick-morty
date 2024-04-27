@@ -1,0 +1,81 @@
+::-webkit-scrollbar {
+  width: 2px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--theme-color);
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--white-color);
+}
+
+/* Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--theme-color) var(--white-color);
+}
+
+/* Microsoft Edge and Internet Explorer */
+*::-ms-scrollbar {
+  width: 2px;
+}
+
+*::-ms-scrollbar-thumb {
+  background-color: var(--theme-color);
+}
+
+*::-ms-scrollbar-track {
+  background-color: var(--white-color);
+}
+
+a {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.flex-between {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 12px;
+}
+
+.app {
+  --head-footer-color: #{$head-footer-color};
+  --theme-color: #{$theme-color};
+  --theme-red: #{$theme-red};
+  --hover-color: #{$hover-color};
+  --text-primary: #{$text-primary};
+  --text-secondary: #{$text-secondary};
+  --text-tertiary: #{$text-tertiary};
+  --unknown-color: #{$unknown-color};
+  --card-shadow: #{$card-shadow};
+  --white-color: #{$white-color};
+  --disabled-color: #{$disabled-color};
+  --passive-color: #{$passive-color};
+  --opacity-white-nine: #{$opacity-white-nine};
+  --opacity-black-two: #{$opacity-black-two};
+  --opacity-black-five: #{$opacity-black-five};
+}
+
+.app.dark {
+  --head-footer-color: #{$dark-head-footer-color};
+  --theme-color: #{$dark-theme-color};
+  --theme-red: #{$dark-theme-red};
+  --hover-color: #{$dark-hover-color};
+  --text-primary: #{$dark-text-primary};
+  --text-secondary: #{$dark-text-secondary};
+  --text-tertiary: #{$dark-text-tertiary};
+  --unknown-color: #{$dark-unknown-color};
+  --card-shadow: #{$dark-card-shadow};
+  --white-color: #{$dark-white-color};
+  --disabled-color: #{$dark-disabled-color};
+  --passive-color: #{$dark-passive-color};
+  --opacity-white-nine: #{$dark-opacity-white-nine};
+  --opacity-black-two: #{$dark-opacity-black-two};
+  --opacity-black-five: #{$dark-opacity-black-five};
+}
