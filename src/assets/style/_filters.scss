@@ -4,7 +4,7 @@
   gap: 0 20px;
   height: 40px;
 
-  .filters__toggle {
+  &__toggle {
     display: flex;
     align-items: center;
     background-color: var(--theme-red);
@@ -24,25 +24,39 @@
       }
     }
 
-    &.clicked:not(.open) {
-      box-shadow: 6px 6px 10px var(--opacity-black-two),
-      -2px -2px 10px var(--theme-red);
-    }
-
     &.open {
       background-color: var(--theme-color);
-      &.clicked {
-        box-shadow: 6px 6px 10px var(--opacity-black-two),
-        -2px -2px 10px var(--theme-color);
+    }
+
+    &.alive {
+      background-color: var(--theme-color);
+      &.clicked path {
+        fill: var(--black-color);
+      }
+    }
+
+    &.dead {
+      background-color: var(--theme-red);
+      &.clicked path {
+        fill: var(--black-color);
+      }
+    }
+
+    &.unknown {
+      background-color: var(--unknown-color);
+      &.clicked path {
+        fill: var(--black-color);
       }
     }
 
   }
-  .filters__options {
+
+  &__options {
     display: flex;
     flex-direction: row;
     gap: 0 20px;
-    .filters__options__bar {
+
+    &__bar {
       display: flex;
       align-items: center;
       background-color: var(--theme-color);
@@ -51,24 +65,24 @@
       border-radius: 50px;
       position: relative;
       transition: width 300ms;
-  
+
       svg {
         width: 25px;
         cursor: pointer;
         position: absolute;
         left: 10px;
-  
+
         path {
           fill: var(--white-color);
         }
-  
+
         &:nth-of-type(2) {
           right: 10px;
           left: auto;
           transition: width 300ms;
         }
       }
-  
+
       input, select {
         background-color: transparent;
         border: none;
@@ -77,29 +91,28 @@
         outline: none;
         color: var(--white-color);
         transition: width 300ms;
-  
+
         &::placeholder {
           color: var(--white-color);
         }
       }
-  
+
+      input {
+        width: 75%;
+      }
+
       &.closed {
         &.filters__options__bar {
           width: 46px;
-  
+
           input {
             width: 0;
           }
-  
+
           svg:nth-of-type(2) {
             width: 0;
           }
         }
-      }
-
-      &--switch {
-        width: 120px;
-        overflow: hidden;
       }
     }
   }

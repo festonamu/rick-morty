@@ -9,7 +9,7 @@ const Navbar = () => {
   return (
     <nav className="navbar">
       <NavLink to="/">
-        <h1 className='pointer'>Rick and Morty</h1>
+        <h1 className="pointer">Rick and Morty</h1>
         <FontAwesomeIcon icon={faHome} className="pointer" />
         {/* <img src={img} alt="drool"/> */}
       </NavLink>

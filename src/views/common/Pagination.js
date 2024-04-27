@@ -42,7 +42,7 @@ const Pagination = ({ type, pagination, page, changePage }) => {
     return pageNumbers.map((pageNum, index) => (
       <span
         key={index}
-        className={`${pageNum === page ? 'active' : ''} ${pageNum === '...' ? 'disabled' : ''}`}
+        className={`pagination__page ${pageNum === page ? 'active' : ''} ${pageNum === '...' ? 'disabled' : ''}`}
         onClick={() => pageNum !== '...' && changePage(pageNum)}
       >
         {pageNum}
@@ -59,11 +59,11 @@ const Pagination = ({ type, pagination, page, changePage }) => {
 
   return (
     <div className="pagination">
-      <span className={`${pagination.prev === null ? 'disabled' : ''}`} onClick={() => changePage(page - 1)}>
+      <span className={`pagination__page ${pagination.prev === null ? 'disabled' : ''}`} onClick={() => changePage(page - 1)}>
         &laquo;
       </span>
       {renderPageNumbers()}
-      <span className={`${pagination.next === null ? 'disabled' : ''}`} onClick={() => changePage(page + 1)}>
+      <span className={`pagination__page ${pagination.next === null ? 'disabled' : ''}`} onClick={() => changePage(page + 1)}>
         &raquo;
       </span>
     </div>

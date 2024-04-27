@@ -1,0 +1,14 @@
+.footer {
+  background-color: var(--head-footer-color);
+  padding: 8px;
+  width: 100%;
+  text-align: center;
+  font-size: .6rem;
+  position: absolute;
+  bottom: 0;
+  z-index: 3;
+
+  a {
+    @include linkHover();
+  }
+}

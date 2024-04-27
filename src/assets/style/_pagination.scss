@@ -1,10 +1,9 @@
 .pagination {
   text-align: end;
 
-  span {
+  &__page {
     display: inline-flex;
     padding: 8px 16px;
-    text-decoration: none;
 
     &:hover {
       color: var(--hover-color);

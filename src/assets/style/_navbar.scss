@@ -48,36 +48,11 @@
   
       &--dark {
         path {
-          fill: #000;
+          fill: #272b33;
           cursor: pointer;
         }
       }
     }
 
-  }
-
-  @media screen and (max-width: 768px) {
-    width: calc(100vw - 14px);
-    padding: 0px 6px 6px 10px;
-
-    .fa-house {
-      display: block;
-      height: 18px;
-    }
-
-    h1 {
-      display: none;
-    }
-
-    &__links {
-      a {
-        margin-right: 2px;
-        font-size: 14px;
-      }
-    }
-
-    &__theme {
-      padding-top: 10px;
-    }
   }
 }
