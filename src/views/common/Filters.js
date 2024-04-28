@@ -1,8 +1,11 @@
 import { useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark, faFilter, faSkull, faFaceSmile } from '@fortawesome/free-solid-svg-icons';
+import { useContext } from "react";
+import { TypeContext } from "../../hooks/Contexts";
 
-const Filters = ({ type, name, episode, status, filterBy }) => {
+const Filters = ({ name, episode, status, filterBy }) => {
+  const type = useContext(TypeContext);
   const searchNameBar = useRef(null);
   const searchEpisodeBar = useRef(null);
   const [filters, setFilters] = useState(false);

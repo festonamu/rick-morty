@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import Filters from './common/Filters';
 import Pagination from './common/Pagination';
 import Loader from './common/Loader';
+import { TypeContext } from "../hooks/Contexts";
 
-const Cards = ({ type }) => {
+const Cards = () => {
+  const [type] = useContext(TypeContext);
   const [page, setPage] = useState(1);
   const [name, setName] = useState('');
   const [episode, setEpisode] = useState('');
@@ -30,10 +32,10 @@ const Cards = ({ type }) => {
 
   return (
     <div>
-      <h2 className="ps">{type}s</h2>
+      <h2 className="ps">{`${type}s`}</h2>
       <div className="flex-between ps">
-        <Filters type={type} name={name} episode={episode} status={status} filterBy={filterBy} />
-        <Pagination type={type} pagination={pagination} page={page} changePage={setPage} />
+        <Filters name={name} episode={episode} status={status} filterBy={filterBy} />
+        <Pagination pagination={pagination} page={page} changePage={setPage} />
       </div>
       {(loading || empty) ? (<Loader message={empty} />) :
         <>
@@ -45,7 +47,7 @@ const Cards = ({ type }) => {
                     <img src={`${card.image}`} alt={type} />
                     <div className="card__image__overlay"></div>
                     <div className="card__image__button">
-                      <Link to={`/characters/${card.id}`}>
+                      <Link to={`/character/${card.id}`}>
                         See details
                       </Link>
                     </div>
@@ -59,13 +61,13 @@ const Cards = ({ type }) => {
                     </div>
                     {card.location && card.location.url && <div className="card__info__section">
                       <span>Last known location:</span>
-                      <Link to={`/locations/${extractId(card.location.url)}`}>
+                      <Link to={`/location/${extractId(card.location.url)}`}>
                         {card.location.name}
                       </Link>
                     </div>}
                     {card.origin && card.origin.url && <div className="card__info__section">
                       <span>First seen in:</span>
-                      <Link to={`/locations/${extractId(card.origin.url)}`}>
+                      <Link to={`/location/${extractId(card.origin.url)}`}>
                         {card.origin.name}
                       </Link>
                     </div>}
@@ -80,7 +82,7 @@ const Cards = ({ type }) => {
                     }
                     <div className="card__image__overlay"></div>
                     <div className="card__image__button">
-                      <Link to={`/locations/${card.id}`}>
+                      <Link to={`/location/${card.id}`}>
                         See details
                       </Link>
                     </div>
@@ -112,7 +114,7 @@ const Cards = ({ type }) => {
                     }
                     <div className="card__image__overlay"></div>
                     <div className="card__image__button">
-                      <Link to={`/episodes/${card.id}`}>
+                      <Link to={`/episode/${card.id}`}>
                         See details
                       </Link>
                     </div>
@@ -139,7 +141,7 @@ const Cards = ({ type }) => {
             ))}
           </div>
 
-          <Pagination type={type} pagination={pagination} page={page} changePage={setPage} />
+          {/* <Pagination pagination={pagination} page={page} changePage={setPage} /> */}
         </>
       }
     </div>

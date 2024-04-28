@@ -5,28 +5,32 @@ import Cards from "./Cards";
 import Details from "./Details";
 import Footer from "./Footer";
 import { useState } from "react";
-import { ThemeContext } from "../hooks/ThemeContext";
+import { ThemeContext, TypeContext } from "../hooks/Contexts";
 
 
 function App() {
   const [theme, setTheme] = useState('dark');
+  const [type, setType] = useState();
+
   return (
     <Router>
       <div className={`app ${theme}`}>
-        <ThemeContext.Provider value={[theme, setTheme]}>
-          <Navbar />
-        </ThemeContext.Provider>
-        <div className="content">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/characters" element={<Cards type="character" />} />
-            <Route path="/locations" element={<Cards type="location" />} />
-            <Route path="/episodes" element={<Cards type="episode" />} />
-            <Route path="/characters/:id" element={<Details type="character" />} />
-            <Route path="/locations/:id" element={<Details type="location" />} />
-            <Route path="/episodes/:id" element={<Details type="episode" />} />
-          </Routes>
-        </div>
+        <TypeContext.Provider value={[type, setType]}>
+          <ThemeContext.Provider value={[theme, setTheme]}>
+            <Navbar />
+          </ThemeContext.Provider>
+          <div className="content">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/character" element={<Cards />} />
+              <Route path="/location" element={<Cards />} />
+              <Route path="/episode" element={<Cards />} />
+              <Route path="/character/:id" element={<Details />} />
+              <Route path="/location/:id" element={<Details />} />
+              <Route path="/episode/:id" element={<Details />} />
+            </Routes>
+          </div>
+        </TypeContext.Provider>
         <Footer />
       </div>
     </Router>

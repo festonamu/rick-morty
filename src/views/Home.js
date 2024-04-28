@@ -1,12 +1,12 @@
 import { Link } from 'react-router-dom';
 import { useContext } from "react";
-import { ThemeContext } from "../hooks/ThemeContext";
+import { TypeContext } from "../hooks/Contexts";
 
 const Home = () => {
-  const theme = useContext(ThemeContext);
+  const [, setType] = useContext(TypeContext);
 
   return (
-    <div className={`home ${theme}`}>
+    <div className="home">
       <div className="home__container">
         <div className="home__container__header">
           <h1>Rick and Morty Explorer</h1>
@@ -34,15 +34,15 @@ const Home = () => {
             <ul className="sp-slider">
               <li>
                 <img src={`https://rickandmortyapi.com/api/character/avatar/${Math.floor(Math.random() * 200) + 1}.jpeg`} alt="image01" />
-                <Link to="/characters">Check Characters</Link>
+                <Link to="/character" onClick={() => {setType('character')}}>Check Characters</Link>
               </li>
               <li>
                 <img src={`https://rickandmortyapi.com/api/character/avatar/${Math.floor(Math.random() * 200) + 1}.jpeg`} alt="image02" />
-                <Link to="/locations">Check Locations</Link>
+                <Link to="/location" onClick={() => {setType('location')}}>Check Locations</Link>
               </li>
               <li>
                 <img src={`https://rickandmortyapi.com/api/character/avatar/${Math.floor(Math.random() * 200) + 1}.jpeg`} alt="image03" />
-                <Link to="/episodes">Check Episodes</Link>
+                <Link to="/episode" onClick={() => {setType('episode')}}>Check Episodes</Link>
               </li>
             </ul>
           </div>

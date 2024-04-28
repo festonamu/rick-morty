@@ -44,3 +44,15 @@ a {
 *::-ms-scrollbar-track {
   background-color: var(--white-color);
 }
+
+html {
+  touch-action: manipulation;
+  -ms-touch-action: manipulation;
+  touch-zooming: none;
+}
+
+// pinch zooming prevented
+@viewport {
+  zoom: 1.0;
+  width: device-width;
+}
