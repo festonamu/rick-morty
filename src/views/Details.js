@@ -9,7 +9,7 @@ import { TypeContext } from "../hooks/Contexts";
 const Details = () => {
   const [type, setType] = useContext(TypeContext);
   const { id } = useParams();
-  const { data: card, loading } = useFetch(`https://rickandmortyapi.com/api/${type}/${id}`);
+  const { data: card, loading, error } = useFetch(`https://rickandmortyapi.com/api/${type}/${id}`);
   const extractId = (url) => {
     const match = url.match(/\/(\d+)$/);
     return match ? match[1] : Math.floor(Math.random() * 200) + 1;
@@ -24,7 +24,7 @@ const Details = () => {
   return (
     <div>
       <h2 className="ps">{ordinalSuffix(id)} {type}</h2>
-      {loading ? <Loader /> :
+      {(loading || error) ? (<Loader message={error} />) :
         <div className="details__container">
           <Link to={`/${type}/${id - 1}`} className="details__container__arrow details__container__arrow--prev">
             <FontAwesomeIcon icon={faAnglesLeft} />

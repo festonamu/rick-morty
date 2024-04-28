@@ -17,7 +17,7 @@ const Cards = () => {
     return match ? match[1] : Math.floor(Math.random() * 200) + 1;
   };
 
-  const { data: cards, pagination, loading, empty } = useFetch(`https://rickandmortyapi.com/api/${type}?page=${page}&name=${name}&status=${status}&episode=${episode}`);
+  const { data: cards, pagination, loading, error } = useFetch(`https://rickandmortyapi.com/api/${type}?page=${page}&name=${name}&status=${status}&episode=${episode}`);
 
   const filterBy = (kind, param) => {
     const actions = {
@@ -37,7 +37,7 @@ const Cards = () => {
         <Filters name={name} episode={episode} status={status} filterBy={filterBy} />
         <Pagination pagination={pagination} page={page} changePage={setPage} />
       </div>
-      {(loading || empty) ? (<Loader message={empty} />) :
+      {(loading || error) ? (<Loader message={error} />) :
         <>
           <div className="cards">
             {cards.map((card) => (
