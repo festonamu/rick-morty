@@ -1,6 +1,19 @@
 .cards {
   @include flex($flex-wrap: wrap, $justify-content: space-around, $gap: 2px 18px);
 
+  &__filters {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 12px;
+  
+    &.disabled {
+      .filters, .pagination {
+        cursor: not-allowed !important;
+        pointer-events: none;
+      }
+    }
+  }
+
   .card {
     @include flex($flex-wrap: wrap, $flex-direction: column, $justify-content: space-between);
     margin: 10px 0 16px;
@@ -109,7 +122,6 @@
       }
     }
   }
-
 }
 
 // mobile

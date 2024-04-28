@@ -1,39 +1,52 @@
-import { useEffect, useState, useContext } from "react";
-import { TypeContext } from "./Contexts";
+import { useEffect, useState } from "react";
+import { useLocation } from 'react-router-dom';
 
 const useFetch = (url) => {
   const [data, setData] = useState([]);
-  const [error, setError] = useState('');
+  const [pagination, setPagination] = useState([]);
   const [loading, setLoading] = useState(true);
-  const [pagination, setPagination] = useState(true);
-  const [type] = useContext(TypeContext);
+  const [error, setError] = useState('');
+
+  function usePreviousPath() {
+    const [prevPath, setPrevPath] = useState(null);
+    const location = useLocation();
+  
+    useEffect(() => {
+      if (prevPath !== location.pathname) {
+        setPrevPath(location.pathname);
+        let index = url.indexOf("?");
+        url = index !== -1 ? url.substring(0, index) : url;
+      }
+    }, [location.pathname, prevPath]);
+  }
+
+  usePreviousPath();
 
   useEffect(() => {
-    if (type) {
-      setLoading(true);
-      setData([]);
-      fetch(url)
-        .then(response => {
-          return response.json();
-        })
-        .then(data => {
-          if (data.error) {
-            setError(data.error);
-          } else if (data.results) {
-            setError('');
-            setPagination(data.info);
-            setData(data.results);
-          } else {
-            setError('');
-            setData(data);
-          }
-          setLoading(false);
-        })
-        .catch(error => {
-          setLoading(false);
-          setError(`There was a problem while fetching the data!`)
-        })
-    }
+    setPagination([]);
+    setData([]);
+    setLoading(true);
+    fetch(url)
+      .then(response => {
+        return response.json();
+      })
+      .then(data => {
+        if (data.error) {
+          setError(data.error);
+        } else if (data.results) {
+          setError('');
+          setPagination(data.info);
+          setData(data.results);
+        } else {
+          setError('');
+          setData(data);
+        }
+        setLoading(false);
+      })
+      .catch(error => {
+        setLoading(false);
+        setError(`There was a problem while fetching the data!`)
+      })
   }, [url])
 
   return { data, pagination, loading, error }

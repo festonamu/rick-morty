@@ -1,14 +1,12 @@
+import useFetch from '../hooks/useFetch';
 import { Link, useParams } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAnglesRight, faAnglesLeft } from '@fortawesome/free-solid-svg-icons';
-import useFetch from '../hooks/useFetch';
 import Loader from './common/Loader';
-import { useContext } from "react";
-import { TypeContext } from "../hooks/Contexts";
 
 const Details = () => {
-  const [type, setType] = useContext(TypeContext);
   const { id } = useParams();
+  const { type } = useParams();
   const { data: card, loading, error } = useFetch(`https://rickandmortyapi.com/api/${type}/${id}`);
   const extractId = (url) => {
     const match = url.match(/\/(\d+)$/);
@@ -16,9 +14,9 @@ const Details = () => {
   };
   function ordinalSuffix(number) {
     if (number === 0) return '0';
-      const suffixes = ['th', 'st', 'nd', 'rd'];
-      const v = number % 100;
-      return number + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
+    const suffixes = ['th', 'st', 'nd', 'rd'];
+    const v = number % 100;
+    return number + (suffixes[(v - 20) % 10] || suffixes[v] || suffixes[0]);
   }
 
   return (
@@ -26,9 +24,11 @@ const Details = () => {
       <h2 className="ps">{ordinalSuffix(id)} {type}</h2>
       {(loading || error) ? (<Loader message={error} />) :
         <div className="details__container">
-          <Link to={`/${type}/${id - 1}`} className="details__container__arrow details__container__arrow--prev">
-            <FontAwesomeIcon icon={faAnglesLeft} />
-          </Link>
+          {(id < 2) ? (<span className="details__container__last"></span>) :
+            (<Link to={`/${type}/${id - 1}`} className="details__container__arrow details__container__arrow--prev">
+              <FontAwesomeIcon icon={faAnglesLeft} />
+            </Link>)
+          }
 
           {card && (
             <>
@@ -42,12 +42,12 @@ const Details = () => {
                     <div className="details__section__desc">
                       <p>{card.name.split(' ')[0]} is originally from &nbsp;
                         {
-                          card.origin.name !== 'unknown' ? (<Link  onClick={() => { setType('location')}} to={`/location/${extractId(card.origin.url)}`}> {card.origin.name} </Link>)
+                          card.origin.name !== 'unknown' ? (<Link to={`/location/${extractId(card.origin.url)}`}> {card.origin.name} </Link>)
                             : (<span> an unknown place </span>)
                         }
                         and it's last known location is &nbsp;
                         {
-                          card.location.name !== 'unknown' ? (<Link  onClick={() => { setType('location')}} to={`/location/${extractId(card.location.url)}`}> {card.location.name}. </Link>)
+                          card.location.name !== 'unknown' ? (<Link to={`/location/${extractId(card.location.url)}`}> {card.location.name}. </Link>)
                             : (<span> an unknown.</span>)
                         }
                       </p>
@@ -69,7 +69,7 @@ const Details = () => {
                       <p>{card.name} holds {card.residents.length} residents (click to see them).</p>
                       <p className="characters">
                         {Array.from({ length: card.residents.length }, (_, index) => index + 1).map(i => (
-                          <Link key={i}  onClick={() => { setType('character')}} to={`/character/${extractId(card.residents[i - 1])}`}> {extractId(card.residents[i - 1])} </Link>
+                          <Link key={i} to={`/character/${extractId(card.residents[i - 1])}`}> {extractId(card.residents[i - 1])} </Link>
                         ))}
                       </p>
                     </div>
@@ -90,8 +90,7 @@ const Details = () => {
                       <p>{card.characters.length} characters are shown in this episode (click to see them)</p>
                       <p className="characters">
                         {Array.from({ length: card.characters.length }, (_, index) => index + 1).map(i => (
-                          <Link key={i} onClick={() => { setType('character')}}
-                            to={`/character/${extractId(card.characters[i - 1])}`}> {extractId(card.characters[i - 1])} </Link>
+                          <Link key={i} to={`/character/${extractId(card.characters[i - 1])}`}> {extractId(card.characters[i - 1])} </Link>
                         ))}
                       </p>
                     </div>

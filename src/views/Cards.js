@@ -1,13 +1,12 @@
-import { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import useFetch from '../hooks/useFetch';
 import Filters from './common/Filters';
 import Pagination from './common/Pagination';
 import Loader from './common/Loader';
-import { TypeContext } from "../hooks/Contexts";
 
 const Cards = () => {
-  const [type] = useContext(TypeContext);
+  const { type } = useParams();
   const [page, setPage] = useState(1);
   const [name, setName] = useState('');
   const [episode, setEpisode] = useState('');
@@ -33,9 +32,9 @@ const Cards = () => {
   return (
     <div>
       <h2 className="ps">{`${type}s`}</h2>
-      <div className="flex-between ps">
-        <Filters name={name} episode={episode} status={status} filterBy={filterBy} />
-        <Pagination pagination={pagination} page={page} changePage={setPage} />
+      <div className={`cards__filters ps ${loading ? 'disabled' : ''}`}>
+        <Filters type={type} name={name} episode={episode} status={status} filterBy={filterBy} />
+        {pagination && pagination.pages > 1 && !error && <Pagination pagination={pagination} page={page} changePage={setPage} />}
       </div>
       {(loading || error) ? (<Loader message={error} />) :
         <>
@@ -47,9 +46,7 @@ const Cards = () => {
                     <img src={`${card.image}`} alt={type} />
                     <div className="card__image__overlay"></div>
                     <div className="card__image__button">
-                      <Link to={`/character/${card.id}`}>
-                        See details
-                      </Link>
+                      <Link to={`/character/${card.id}`}> See details </Link>
                     </div>
                   </div>
                   <div className="card__info">
@@ -61,15 +58,11 @@ const Cards = () => {
                     </div>
                     {card.location && card.location.url && <div className="card__info__section">
                       <span>Last known location:</span>
-                      <Link to={`/location/${extractId(card.location.url)}`}>
-                        {card.location.name}
-                      </Link>
+                      <Link to={`/location/${extractId(card.location.url)}`}> {card.location.name} </Link>
                     </div>}
                     {card.origin && card.origin.url && <div className="card__info__section">
                       <span>First seen in:</span>
-                      <Link to={`/location/${extractId(card.origin.url)}`}>
-                        {card.origin.name}
-                      </Link>
+                      <Link to={`/location/${extractId(card.origin.url)}`}> {card.origin.name} </Link>
                     </div>}
                   </div>
                 </div>}
@@ -82,9 +75,7 @@ const Cards = () => {
                     }
                     <div className="card__image__overlay"></div>
                     <div className="card__image__button">
-                      <Link to={`/location/${card.id}`}>
-                        See details
-                      </Link>
+                      <Link to={`/location/${card.id}`}> See details </Link>
                     </div>
                   </div>
                   <div className="card__info">
@@ -92,9 +83,7 @@ const Cards = () => {
                       <h2>{card.name}</h2>
                     </div>
                     <div className="card__info__section">
-                      {card.dimension !== 'unknown' &&
-                        <span>{card.dimension}</span>
-                      }
+                      {card.dimension !== 'unknown' && <span>{card.dimension}</span>}
                     </div>
                     {(card.residents && card.residents.length && card.residents.length > 0) ?
                       (<div className="card__info__section">
@@ -114,9 +103,7 @@ const Cards = () => {
                     }
                     <div className="card__image__overlay"></div>
                     <div className="card__image__button">
-                      <Link to={`/episode/${card.id}`}>
-                        See details
-                      </Link>
+                      <Link to={`/episode/${card.id}`}> See details </Link>
                     </div>
                   </div>
                   <div className="card__info">
@@ -140,8 +127,7 @@ const Cards = () => {
               </div>
             ))}
           </div>
-
-          {/* <Pagination pagination={pagination} page={page} changePage={setPage} /> */}
+          {pagination && pagination.pages > 1 && <Pagination pagination={pagination} page={page} changePage={setPage} />}
         </>
       }
     </div>

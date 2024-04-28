@@ -1,6 +1,4 @@
-// import { useEffect } from "react";
-
-const Pagination = ({ type, pagination, page, changePage }) => {
+const Pagination = ({ pagination, page, changePage }) => {
   const renderPageNumbers = () => {
     const pageNumbers = [];
   
@@ -49,13 +47,6 @@ const Pagination = ({ type, pagination, page, changePage }) => {
       </span>
     ));
   };
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     changePage(1);
-  //   }, 500);
-  // }, [type])
-  
 
   return (
     <div className="pagination">
