@@ -1,6 +1,11 @@
+import { FC } from "react";
 import { Link } from "react-router-dom";
 
-const Loader = ({ message }) => {
+interface LoaderProps {
+  message?: string;
+}
+
+const Loader: FC<LoaderProps> = ({ message }) => {
   return (
     <div className="loader">
       {message ?

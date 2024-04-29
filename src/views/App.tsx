@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FC, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./common/Navbar";
 import Home from "./Home";
@@ -7,9 +7,8 @@ import Details from "./Details";
 import Footer from "./Footer";
 import { ThemeContext } from "../hooks/Contexts";
 
-
-function App() {
-  const [theme, setTheme] = useState('dark');
+const App: FC = () => {
+  const [theme, setTheme] = useState<string>('dark');
 
   return (
     <Router>
@@ -21,10 +20,6 @@ function App() {
             <Routes>
               <Route path="/" element={<Home />} />
               <Route path="/:type" element={<Cards />} />
-              <Route path="/:type" element={<Cards />} />
-              <Route path="/:type" element={<Cards />} />
-              <Route path="/:type/:id" element={<Details />} />
-              <Route path="/:type/:id" element={<Details />} />
               <Route path="/:type/:id" element={<Details />} />
             </Routes>
           </div>

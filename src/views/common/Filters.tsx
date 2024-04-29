@@ -1,25 +1,35 @@
-import { useEffect, useRef, useState } from 'react';
+import { FC, useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass, faXmark, faFilter, faSkull, faFaceSmile, faQuestion } from '@fortawesome/free-solid-svg-icons';
+import { faMagnifyingGlass, faXmark, faFilter, faSkull, faSmile, faQuestion } from '@fortawesome/free-solid-svg-icons';
 
-const Filters = ({ type, name, episode, status, filterBy }) => {
-  const searchNameBar = useRef(null);
-  const searchEpisodeBar = useRef(null);
-  const [filters, setFilters] = useState(false);
+interface FiltersProps {
+  type: string | undefined;
+  name: string;
+  episode: string;
+  status: string;
+  filterBy: (type: string, value: string) => void;
+}
 
-  const toggleBar = (param) => {
+const Filters: FC<FiltersProps> = ({ type, name, episode, status, filterBy }) => {
+  const searchNameBar = useRef<HTMLInputElement>(null);
+  const searchEpisodeBar = useRef<HTMLInputElement>(null);
+  const [filters, setFilters] = useState<boolean>(false);
+
+  const toggleBar = (param: string) => {
     const episodeBar = searchEpisodeBar.current;
     const nameBar = searchNameBar.current;
-    if (param === 'episode') {
-      if (!episodeBar.classList.toggle('closed')) nameBar.classList.add('closed');
-    } else if (!nameBar.classList.toggle('closed') && type === 'episode') {
-      episodeBar.classList.add('closed');
-    } else if (nameBar && param === 'status') {
-      nameBar.classList.add('closed');
+    if (nameBar) {
+      if (param === 'episode') {
+        if (episodeBar && !episodeBar.classList.toggle('closed')) nameBar.classList.add('closed');
+      } else if (!nameBar.classList.toggle('closed') && type === 'episode' && episodeBar) {
+        episodeBar.classList.add('closed');
+      } else if (nameBar && param === 'status') {
+        nameBar.classList.add('closed');
+      }
     }
   };
 
-  const searchStatus = (statusValue) => {
+  const searchStatus = (statusValue: string) => {
     filterBy('status', statusValue);
     toggleBar('status');
   };
@@ -31,7 +41,7 @@ const Filters = ({ type, name, episode, status, filterBy }) => {
 
   useEffect(() => {
     setFilters(false);
-  }, [type])
+  }, [type]);
 
   return (
     <div className="filters">
@@ -58,7 +68,7 @@ const Filters = ({ type, name, episode, status, filterBy }) => {
             {['alive', 'dead', 'unknown'].map((statusValue, index) => (
               <div className={`filters__toggle ${statusValue} ${status === statusValue ? 'clicked' : ''}`}
                 key={index} onClick={() => searchStatus(statusValue)}>
-                <FontAwesomeIcon icon={statusValue === 'alive' ? faFaceSmile : statusValue === 'dead' ? faSkull : faQuestion} />
+                <FontAwesomeIcon icon={statusValue === 'alive' ? faSmile : statusValue === 'dead' ? faSkull : faQuestion} />
               </div>
             ))}
           </>)}

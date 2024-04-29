@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 
-const useFetch = (url) => {
-  const [data, setData] = useState([]);
-  const [pagination, setPagination] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState('');
+const useFetch = (url: string) => {
+  const [data, setData] = useState<any>(null);
+  const [pagination, setPagination] = useState<any>(null);
+  const [loading, setLoading] = useState<boolean>(true);
+  const [error, setError] = useState<string>('');
 
   function usePreviousPath() {
-    const [prevPath, setPrevPath] = useState(null);
+    const [prevPath, setPrevPath] = useState<string | null>(null);
     const location = useLocation();
-  
+
     useEffect(() => {
       if (prevPath !== location.pathname) {
         setPrevPath(location.pathname);
-        let index = url.indexOf("?");
+        const index = url.indexOf("?");
         url = index !== -1 ? url.substring(0, index) : url;
       }
     }, [location.pathname, prevPath]);
@@ -23,13 +23,11 @@ const useFetch = (url) => {
   usePreviousPath();
 
   useEffect(() => {
-    setPagination([]);
-    setData([]);
+    setPagination(null);
+    setData(null);
     setLoading(true);
     fetch(url)
-      .then(response => {
-        return response.json();
-      })
+      .then(response => response.json())
       .then(data => {
         if (data.error) {
           setError(data.error);
@@ -43,7 +41,7 @@ const useFetch = (url) => {
         }
         setLoading(false);
       })
-      .catch(error => {
+      .catch(() => {
         setLoading(false);
         setError(`There was a problem while fetching the data!`)
       })
