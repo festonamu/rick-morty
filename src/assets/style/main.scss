@@ -5,16 +5,6 @@
 @import 'colors';
 @import 'common';
 
-@import 'pagination';
-@import 'filters';
-@import 'navbar';
-@import 'footer';
-@import 'loader';
-
-@import 'home';
-@import 'cards';
-@import 'details';
-
 * {
   margin: 0;
   cursor: default;
@@ -24,36 +14,16 @@
   overflow: hidden;
 }
 
-html, body, #root {
+html,
+body,
+#root {
   height: 100%;
+
   .app {
     display: flex;
     justify-content: space-between;
     flex-direction: column;
     height: 100%;
     background-color: var(--white-color);
-  }
-  
-  .content {
-    margin-top: 54px;
-    padding: 8px 20px 60px;
-    overflow: hidden auto;
-  
-    h2 {
-      text-transform: capitalize;
-    }
-  }
-
-  @media(max-width: 480px) {
-    .content {
-      margin-top: 44px;
-      padding: 8px 2px 60px;
-
-      .ps {
-        padding-left: 6px;
-        flex-direction: column;
-        gap: 6px;
-      }
-    }
   }
 }

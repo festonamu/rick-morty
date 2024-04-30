@@ -1,3 +1,4 @@
+@import '../mixins';
 
 .loader {
   width: 100%;
@@ -21,13 +22,19 @@
     text-transform: uppercase;
     text-align: center;
     line-height: 2.5;
+
     a {
       color: var(--theme-color);
     }
   }
-  
+
   @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+      transform: rotate(0deg);
+    }
+
+    100% {
+      transform: rotate(360deg);
+    }
   }
 }

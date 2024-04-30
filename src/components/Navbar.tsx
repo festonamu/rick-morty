@@ -2,7 +2,8 @@ import { FC, useContext } from 'react';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSun, faMoon, faHome } from '@fortawesome/free-solid-svg-icons';
-import { ThemeContext } from "../../hooks/Contexts";
+import { ThemeContext } from "../providers/Contexts";
+import './../assets/style/components/_navbar.scss';
 
 const Navbar: FC = () => {
   const [theme, setTheme] = useContext(ThemeContext);
@@ -21,7 +22,7 @@ const Navbar: FC = () => {
         ))}
       </div>
       <div className="navbar__theme">
-        <FontAwesomeIcon 
+        <FontAwesomeIcon
           icon={(theme === 'dark') ? faSun : faMoon}
           className={`navbar__theme__icon navbar__theme__icon--${theme === 'light' ? 'dark' : 'light'}`}
           onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}

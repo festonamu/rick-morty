@@ -1,6 +1,7 @@
 import { FC, useEffect, useRef, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMagnifyingGlass, faXmark, faFilter, faSkull, faSmile, faQuestion } from '@fortawesome/free-solid-svg-icons';
+import './../assets/style/components/_filters.scss';
 
 interface FiltersProps {
   type: string | undefined;

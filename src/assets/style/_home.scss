@@ -220,9 +220,11 @@
   .home {
     &__container__slider {
       max-height: 340px;
+
       &__content {
         padding: 6px 0 10px;
-        .sp-slider > li a {
+
+        .sp-slider>li a {
           display: inline-flex;
         }
       }

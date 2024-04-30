@@ -1,4 +1,6 @@
 import { Link } from 'react-router-dom';
+import extractId from "../utils/extractId";
+import './../assets/style/_home.scss';
 
 const Home = () => {
 
@@ -29,15 +31,15 @@ const Home = () => {
             <div className="sp-parallax-bg"></div>
             <ul className="sp-slider">
               <li>
-                <img src={`https://rickandmortyapi.com/api/character/avatar/${Math.floor(Math.random() * 200) + 1}.jpeg`} alt="image01" />
+                <img src={`https://rickandmortyapi.com/api/character/avatar/${extractId('')}.jpeg`} alt="image01" />
                 <Link to="/character">Check Characters</Link>
               </li>
               <li>
-                <img src={`https://rickandmortyapi.com/api/character/avatar/${Math.floor(Math.random() * 200) + 1}.jpeg`} alt="image02" />
+                <img src={`https://rickandmortyapi.com/api/character/avatar/${extractId('')}.jpeg`} alt="image02" />
                 <Link to="/location">Check Locations</Link>
               </li>
               <li>
-                <img src={`https://rickandmortyapi.com/api/character/avatar/${Math.floor(Math.random() * 200) + 1}.jpeg`} alt="image03" />
+                <img src={`https://rickandmortyapi.com/api/character/avatar/${extractId('')}.jpeg`} alt="image03" />
                 <Link to="/episode">Check Episodes</Link>
               </li>
             </ul>

@@ -29,6 +29,7 @@
 
     &.alive {
       background-color: var(--theme-color);
+
       &.clicked path {
         fill: var(--black-color);
       }
@@ -36,6 +37,7 @@
 
     &.dead {
       background-color: var(--theme-red);
+
       &.clicked path {
         fill: var(--black-color);
       }
@@ -43,6 +45,7 @@
 
     &.unknown {
       background-color: var(--unknown-color);
+
       &.clicked path {
         fill: var(--black-color);
       }
@@ -80,7 +83,8 @@
         }
       }
 
-      input, select {
+      input,
+      select {
         background-color: transparent;
         border: none;
         margin: 6px 0px 6px 40px;
@@ -125,6 +129,7 @@
 
       &__bar {
         width: 160px;
+
         input {
           margin: 6px 0px 6px 34px;
         }
@@ -143,6 +148,7 @@
 
       &__bar {
         width: 300px;
+
         input {
           margin: 6px 0px 6px 40px;
         }

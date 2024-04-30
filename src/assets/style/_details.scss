@@ -1,9 +1,12 @@
+@import 'mixins';
+
 .details__container {
   display: flex;
   align-items: center;
 
   &__arrow {
     padding: 0 4px;
+
     svg {
       font-size: 36px;
       cursor: pointer;
@@ -65,7 +68,8 @@
       &__desc {
         padding: 10px 25px 25px;
 
-        p, a {
+        p,
+        a {
           @include flex($flex-wrap: wrap);
           color: var(--text-secondary);
 
@@ -137,6 +141,7 @@
   .details__container {
     &__arrow {
       padding: 4px;
+
       svg {
         font-size: 22px;
         cursor: pointer;
@@ -147,6 +152,7 @@
         padding: 4px 9px 4px 0px;
       }
     }
+
     .details {
       width: 90%;
       margin: 20px auto;

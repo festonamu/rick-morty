@@ -1,3 +1,5 @@
+@import 'mixins';
+
 .cards {
   @include flex($flex-wrap: wrap, $justify-content: space-around, $gap: 2px 18px);
 
@@ -5,9 +7,11 @@
     display: flex;
     justify-content: space-between;
     margin-top: 12px;
-  
+
     &.disabled {
-      .filters, .pagination {
+
+      .filters,
+      .pagination {
         cursor: not-allowed !important;
         pointer-events: none;
       }
@@ -15,7 +19,7 @@
   }
 
   .card {
-    @include flex($flex-wrap: wrap, $flex-direction: column, $justify-content: space-between);
+    @include flex($flex-wrap: wrap, $flex-direction: column, $justify-content: flex-start);
     margin: 10px 0 16px;
     background-color: var(--white-color);
     box-shadow: 0 .5rem 1rem var(--card-shadow);
@@ -129,11 +133,15 @@
   .cards {
     .card {
       width: 300px;
-  
+
       &__image {
         height: 300px;
+
+        &__overlay {
+          height: 100%;
+        }
       }
-  
+
       &__info {
         padding: 6px 12px 6px;
       }
@@ -146,11 +154,15 @@
   .cards {
     .card {
       width: 260px;
-  
+
       &__image {
         height: auto;
+
+        &__overlay {
+          height: 98.5%;
+        }
       }
-  
+
       &__info {
         padding: 2px 12px 6px;
       }

@@ -50,3 +50,27 @@ html {
   zoom: 1.0;
   width: device-width;
 }
+
+.content {
+  margin-top: 54px;
+  padding: 8px 20px 60px;
+  overflow: hidden auto;
+
+  h2 {
+    text-transform: capitalize;
+  }
+}
+
+// mobile
+@media(max-width: 480px) {
+  .content {
+    margin-top: 44px;
+    padding: 8px 2px 60px;
+
+    .ps {
+      padding-left: 6px;
+      flex-direction: column;
+      gap: 6px;
+    }
+  }
+}

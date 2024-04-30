@@ -1,4 +1,5 @@
 import { FC } from 'react';
+import './../assets/style/components/_pagination.scss';
 
 interface PaginationProps {
   pagination: {

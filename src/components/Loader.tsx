@@ -1,5 +1,6 @@
 import { FC } from "react";
 import { Link } from "react-router-dom";
+import './../assets/style/components/_loader.scss';
 
 interface LoaderProps {
   message?: string;

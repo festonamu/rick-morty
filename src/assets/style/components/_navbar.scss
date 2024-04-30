@@ -1,17 +1,21 @@
+@import '../mixins';
+
 .navbar {
   @include flex($align-items: center, $justify-content: space-between);
   position: fixed;
   top: 0;
   z-index: 4;
   background-color: var(--head-footer-color);
-  
+
   &__links {
     margin-left: auto;
     height: 20px;
+
     a {
       padding: 6px;
       font-weight: bolder;
       @include linkHover();
+
       &.active {
         color: var(--theme-red);
       }
@@ -21,16 +25,18 @@
   &__theme {
     cursor: pointer;
     padding: 4px;
+
     &__icon {
       cursor: pointer;
       height: 22px;
+
       &--light {
         path {
           fill: yellow;
           cursor: pointer;
         }
       }
-  
+
       &--dark {
         path {
           fill: #272b33;
@@ -47,22 +53,22 @@
   @media(min-width: 768px) {
     width: calc(100vw - 30px);
     padding: 12px 36px 12px 12px;
-  
+
     .fa-house {
       display: none;
     }
-  
+
     h1 {
       color: var(--theme-color);
     }
-  
+
     &__links {
       a {
         margin-right: 10px;
         font-size: 16px;
       }
     }
-  
+
     &__theme {
       height: 22px;
     }
@@ -74,26 +80,27 @@
   @media(max-width: 768px) {
     width: calc(100vw - 12px);
     padding: 6px;
-  
+
     .fa-house {
       display: block;
       height: 22px;
+
       path {
         fill: var(--theme-color);
       }
     }
-  
+
     h1 {
       display: none;
     }
-  
+
     &__links {
       a {
         margin-right: 2px;
         font-size: 14px;
       }
     }
-  
+
     &__theme {
       height: 22px;
     }
