@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from 'react-router-dom';
 
-const useFetch = (url: string) => {
+export const useFetch = (url: string) => {
   const [data, setData] = useState<any>(null);
   const [pagination, setPagination] = useState<any>(null);
   const [loading, setLoading] = useState<boolean>(true);
